@@ -1,28 +1,36 @@
-<?php
-require_once "funciones_bd.php";
-?>
+<?php require_once 'funciones_bd.php'; ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <h1><center>INVENTARIO</center></h1>
-        <p><a href="formulario_crear.php">Crear</a></p>
-        <?php
-            $db = conecta_db();
+<head>
+<title>Inventario</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link href="estilo.css" type="text/css=" rel="stylesheet">
+</head>
+<body>
+<div>INVENTARIO</div>
+<div>
+<a href="formulario_nuevo_equipo.php">Nuevo Equipo</a>
+</div>
+<?php
+            $bd = conectaBd();
             $consulta = "SELECT * FROM equipo";
-            $resultado = $db->query($consulta);
-            //print_r($resultado);
+            $resultado = $bd->query($consulta);
             if (!$resultado) {
-                echo "<p>Error en la consulta.</p>\n";
+                echo "Error en la consulta";
             } else {
-                foreach ($resultado as $valor) {
-                    echo "<p>".$valor['nombre']."</p>\n";
+                echo "Equipo<br>Nombre<br>";
+                foreach($resultado as $registro) {
+                    echo $registro['nombre']."<br>";
                 }
-            }   
-                   
-            $db = null;
+            }
+            
+            $bd = null;
         ?>
-    </body>
+</body>
 </html>
